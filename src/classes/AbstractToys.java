@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Objects;
+
 public abstract class AbstractToys {
     private int id;
     private String name;
@@ -37,5 +39,23 @@ public abstract class AbstractToys {
 
     public int getId() {
         return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractToys toys = (AbstractToys) o;
+        return id == toys.id && quant == toys.quant && Objects.equals(name, toys.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, quant);
     }
 }
